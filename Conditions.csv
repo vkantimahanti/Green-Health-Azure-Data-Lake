@@ -1,0 +1,10 @@
+Condition_ID,Name,Severity Factor
+A1,Diabetes,0.6
+A2,Diarrheal Disease,1.1
+A3,General Check up,1.5
+A4,Leg Fracture Treatment,2.1
+A5,Spinal Injury Surgery,2.4
+A6,Alzheimers,2.6
+A7,Lung Cancer,4.1
+A8,Heart Transplantation,5.1
+A9,Respiratory Infections,5.8

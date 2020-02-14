@@ -1,0 +1,86 @@
+Health Institution
+	ID
+	Name
+	Address
+	City
+	State
+	Type
+	PhoneNumber
+	NHI
+
+
+Doctor 
+	ID
+	FName
+	LNAME
+	Type
+	Address
+	City
+	State
+	PhoneNumber
+		
+		
+
+Member
+	ID
+	FName
+	LName
+	Address
+	City
+	State
+	PhoneNumber
+	PlanID
+	DOB
+	StartDate
+	EndDate
+
+
+Insurance Plan
+	ID
+	Name
+	Copay_General
+	Copay_Specialty
+	CoInsurance
+	Deductible
+	Pharmacy
+	
+
+Condition
+	ID
+	Name
+	Severity Factor
+
+
+Claim
+	ClaimID
+	Member_ID
+	Plan_ID
+	Type - walkin, Emergency, hospitalization
+	ConditionID
+	Type
+	Total Bill
+	
+	
+
+analytical concept 
+calculate the member and insurance company amount over the claim
+calculate the severity of each patient over the year
+
+
+	
+
+
+
+		
+	
+
+
+
+
+
+
+
+
+	
+	
+	

@@ -1,0 +1,6 @@
+Hospital_ID	Name	Address	City	State 	ZipCode	Type	PhoneNumber	NHI
+101	WeCare Hospital	35 Blanchard	Detroit	MI	48111	Neuro science Specialty	2354568562	11111111
+102	Global Hospital	20 JamesStreet	Detroit	MI	48222	Ortho Specialty	2548529513	22222222
+103	Mercury Hospital	30 MorseStreet	Detroit	MI	48333	Multi Specialty	2684219345	33333333
+104	Whole Mount Hospital	15 Alstadt	Detroit	MI	48444	Multi Specialty	2845697135	44444444
+105	QuickHeal Hospital	23 RiverRoad	Detroit	MI	48555	Walk In & UrgentCare	2694178324	55555555

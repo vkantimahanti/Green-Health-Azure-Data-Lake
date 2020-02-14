@@ -1,0 +1,3 @@
+Plan_ID,Name,CoPay_General,CoPay_Specialty,CoInsurance,Deductible,Pharmacy
+RA1,Absolute Care ,30,30,30,3000,30
+RA2,All Care,20,20,20,1000,30

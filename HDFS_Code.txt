@@ -1,0 +1,88 @@
+Inbound combine files purpose
+
+purpose of getfiles
+what is move file status - how is the value populated 
+do we get xsd files 
+when a new file is there - you will check whether the file is already loaded or not
+what is the status of field move in Inbound Sweep Folder
+purpose of filemetric table
+
+
+create table Member(MemberID bigint, FName varchar(100), LName varchar(100), Address varchar(100), City varchar(100), State varchar(30), PhoneNumber varchar(20), PlanID varchar(10), DOB varchar(10), StartDate varchar(10), EndDate varchar(10));
+
+
+create table Insurance_Plan(Plan_ID varchar(10),Plan_Name varchar(100),	CoPay_General int,CoPay_Specialty int, CoInsurance varchar(10),
+	Deductible bigint,	Pharmacy varchar(10))
+)
+
+
+create table Reference_Condition(Condtionid varchar(10), Name varchar(200), Severity_Factory float);
+
+
+
+
+create table Health_Institution(Hospital_ID int,Name varchar(100),	Address varchar(50),city varchar(10), state varchar(10),
+Zipcode varchar(5), Type varchar(100),	PhoneNumber bigint,	NHI bigint);
+
+
+insert into Health_Institution values (101,'WeCare Hospital','35 BL','Detroit','MI',48111,'Neuro science Specialty',2354568562,11111111);
+
+insert into Health_Institution values (102,'Global Hospital','20 JA','Detroit','MI',48222,'Ortho Specialty',2548529513,	22222222);
+
+insert into Health_Institution values (103,'Mercury Hospital','30 MO','Detroit','MI',48333,'Multi Specialty',2684219345,33333333);
+
+insert into Health_Institution values (104,'Whole Mount Hospital','15 AL','Detroit','MI',48444,'Multi Specialty',2845697135,44444444);
+
+insert into Health_Institution values (105,'Quick Heal Hospital','23 RI','Detroit','MI',48555,'Walk In & UrgentCare',2694178324,55555555);
+
+
+sqoop import --connect jdbc:mysql://dbserver.edu.cloudlab.com:3306/GreenHealth_322 -username labuser -password edureka --table Health_Institution --target-dir /user/edureka_173532/testEdureka/emptable-data -m 1
+
+
+CREATE TABLE GH_Raw_Claims(ClaimID INT, MemberID INT, Type STRING, ConditonID String, HospitalID String, StartDate String, EndDate String, TotalBill String) 
+row format delimited fields terminated by ',' stored as RC
+TBLPROPERTIES("skip.header.line.count"="1")
+
+sqoop import --connect jdbc:mysql://mysqldb.edu.cloudlab.com:3306/GreenHealth_OLTP -username edu_labuser -password edureka --table Health_Institution --target-dir /user/edureka_757565/DBData/Health_Institution-data -m 1
+
+
+sqoop import \
+--connect jdbc:mysql://mysqldb.edu.cloudlab.com:3306/GreenHealth_OLTP \
+--username labuser \
+--password edureka \
+--table Insurance_Plan \
+--hive-import \
+--hive-database 322_rawdata_greenhealth \
+-m 1
+
+
+
+sqoop import \
+--connect jdbc:mysql://mysqldb.edu.cloudlab.com:3306/GreenHealth_OLTP \
+--username labuser \
+--password edureka \
+--table Reference_Condition \
+--hive-import \
+--hive-database 322_rawdata_greenhealth \
+-m 1
+
+
+sqoop import \
+--connect jdbc:mysql://mysqldb.edu.cloudlab.com:3306/GreenHealth_OLTP \
+--username labuser \
+--password edureka \
+--table Health_Institution \
+--hive-import \
+--hive-database 322_rawdata_greenhealth \
+-m 1
+
+
+
+sqoop import \
+--connect jdbc:mysql://mysqldb.edu.cloudlab.com:3306/GreenHealth_OLTP \
+--username labuser \
+--password edureka \
+--table Member \
+--hive-import \
+--hive-database 322_rawdata_greenhealth \
+-m 1
