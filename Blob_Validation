@@ -1,0 +1,80 @@
+
+from pyspark.sql import SparkSession
+# $example on:schema_merging$
+from pyspark.sql import Row
+# $example off:schema_merging$
+
+
+/*Blob Storage account name and 
+Account keys*/
+
+
+blob_storage_account_name = "ACCOUNT_NAME"
+blob_storage_account_key = "ACCESS_KEY"
+
+
+File_Location = "\DataFiles\GreenHealth\2020\02\27\"
+File_Location_Main = "\DataFiles\GreenHealth\"
+file_type1 = "text"
+file_type2 = "csv"
+
+Full_File_Path_Claims = "\DataFiles\GreenHealth\2020\02\27\Claims.csv"
+Full_File_Path_Member = "\DataFiles\GreenHealth\2020\02\27\Member.txt"
+
+spark.conf.set(
+  "fs.azure.account.key."+myblob322+".blob.core.windows.net",
+  storage_account_access_key)
+
+
+#List_Files_df
+ List_Files_df = spark.read.csv(File_Location,File_Location_Main)
+ List_Files_df.show() 
+
+
+Recursive Load
+recursive_loaded_df = spark.read.format(file_type2).option("recursiveFileLookup", "true").load(Full_File_Path_Claims) recursive_loaded_df.show()
+
+spark.sql("set spark.sql.files.ignoreCorruptFiles=false") 
+ 
+ 
+#create a Claims dataframe 
+df = spark.read.format(file_type2).option("inferSchema", "true").load(Full_File_Path_Claims) 
+
+
+
+
+#create a temporary view on dataframe
+df.createOrReplaceTempView("Claims_blob_File")
+
+
+display(df.select("MemberID"))
+
+
+%sql
+
+SELECT SUM(Total_Bill) FROM Claims_blob_File
+display(df.select(""))
+
+SELECT MAX(LEN(Claim_ID)), MIN(LEN(CLAIM_ID)) FROM Claims_blob_File 
+
+
+
+Describe Claims_blob_File  # to know the columns
+
+
+
+
+#create a dataframe 
+df1 = spark.read.load(Full_File_Path_Member,
+                     format=file_type1, sep="\\t", inferSchema="true", header="true")
+
+
+
+
+
+
+
+
+
+
+
